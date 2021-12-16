@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.newsapp.shared.models.NewsModel" />
+
+        <variable
+            name="listener"
+            type="com.newsapp.shared.listeners.NewsItemClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:onClick="@{()->listener.onNewsClick(model)}"
+        android:padding="@dimen/dp_16">
+
+        <ImageView
+            android:id="@+id/imgNews"
+            setImageUrl="@{model.urlToImage}"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtNewsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{model.title}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgNews"
+            app:layout_constraintTop_toTopOf="@+id/imgNews"
+            tools:text="Test Title" />
+
+        <TextView
+            android:id="@+id/txtNewShortDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{model.description}"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtNewsTitle"
+            app:layout_constraintTop_toBottomOf="@+id/txtNewsTitle"
+            tools:text="Test Description Test Description Test Descripsn Test Description Test DescriptionTest DescriptionTest Description" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
